@@ -36,8 +36,9 @@ class PluginTest {
   }
 
   /**
-   * 拦截器的真实形式
-   * 设计模式讲的时候，要先写出最简单的用法，再优化
+   * plugin 是对原对象(比如parameterHandler)的代理，基于jdk动态代理（基于接口）,代理对象中加入了拦截器,每多一个拦截器多包一层，层层代理。
+   * 目标对象+拦截器1 —>代理对象1，代理对象1+拦截器2 ->代理对象2，代理对象2+拦截器3->代理对象3
+   * 代理对象执行query方法，进入代理对象invoke方法，执行拦截器逻辑，再执行当前代理对象的目标对象的invoke（），这是个递归，最终所有拦截器形成了链式调用
    */
   @Test
   void interceptorUse() {
@@ -66,16 +67,6 @@ class PluginTest {
     Plugin plugin2 = new Plugin(object1, interceptor2, null);
     // 获得代理对象
     Object object2 = Proxy.newProxyInstance(object1.getClass().getClassLoader(), object1.getClass().getInterfaces(), plugin2);
-
-    // 还有一个问题，什么时候执行拦截
-    // filter中，用chain.doFilter()方法
-    // mvc 的 handlerInterceptor中，chain.applyPreHandle() chain.applyPostHandle()
-    // mybatis的Interceptor是如何调用的，单纯的看代码，不太容易看出来
-
-
-    // plugin 是对原对象的代理，基于jdk动态代理（基于接口）,代理对象中加入了拦截器,每多一个拦截器多包一层，层层代理。
-    // 目标对象+拦截器1 —>代理对象1，代理对象1+拦截器2 ->代理对象2，代理对象2+拦截器3->代理对象3
-    // 代理对象执行query方法，进入代理对象invoke方法，执行拦截器逻辑，再执行当前代理对象的目标对象的invoke（），这是个递归，最终所有拦截器形成了链式调用
 
   }
 
