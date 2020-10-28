@@ -90,7 +90,7 @@ public class VelocitySqlSource implements SqlSource {
 
   public static class IteratorParameter {
 
-    private static final String PREFIX = "__frch_";
+    private static final String PREFIX = "-_frch_";
     private int count = 0;
     private final Map<String, Object> bindings;
 

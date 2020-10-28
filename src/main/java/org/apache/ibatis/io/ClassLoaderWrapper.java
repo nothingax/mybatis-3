@@ -40,7 +40,9 @@ public class ClassLoaderWrapper {
    * Get a resource as a URL using the current class path
    *
    * @param resource - the resource to locate
+   *                 从包开始的路径：如 org.xx.xx.x.xx-properties
    * @return the resource or null
+   *          返回的是当前机器中的文件路径：/User/xxx/x/xxx/org.xx.xx.x.xx-properties
    */
   public URL getResourceAsURL(String resource) {
     return getResourceAsURL(resource, getClassLoaders(null));

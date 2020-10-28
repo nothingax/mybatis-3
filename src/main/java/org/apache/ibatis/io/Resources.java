@@ -236,6 +236,8 @@ public class Resources {
   }
 
   /**
+   * getURL 从url获取
+   * getResource 从本机路径获取
    * Gets a URL as a Properties object
    *
    * @param urlString - the URL to get

@@ -50,6 +50,8 @@ import org.apache.ibatis.io.Resources;
 /**
  * @author Clinton Begin
  * @author Kazuki Shimizu
+ *
+ * TypeHandler 的容器
  */
 public final class TypeHandlerRegistry {
 

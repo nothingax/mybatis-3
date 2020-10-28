@@ -81,6 +81,8 @@ public abstract class VFS {
   /**
    * Get the singleton {@link VFS} instance. If no {@link VFS} implementation can be found for the
    * current environment, then this method returns null.
+   *
+   * TODO 这个单例怎么保证线程安全？
    */
   public static VFS getInstance() {
     return VFSHolder.INSTANCE;

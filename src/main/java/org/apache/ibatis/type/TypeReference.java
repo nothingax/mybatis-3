@@ -27,6 +27,12 @@ import java.lang.reflect.Type;
  */
 public abstract class TypeReference<T> {
 
+
+  /**
+   * 构造具体Handler会初始化
+   * rawType存的是具体泛型，比如
+   * IntegerTypeHandler 存的是 class java.lang.Integer
+   */
   private final Type rawType;
 
   protected TypeReference() {

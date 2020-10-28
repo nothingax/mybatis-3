@@ -22,8 +22,21 @@ import java.util.Properties;
  */
 public interface Interceptor {
 
+  /**
+   * 拦截器的拦截逻辑
+   *
+   * @param invocation 目标对象、方法、参数的容器，链中的作用
+   * @return
+   * @throws Throwable
+   */
   Object intercept(Invocation invocation) throws Throwable;
 
+  /**
+   * 目标对象加入拦截逻辑，返回被代理后的目标对象（invocationHandler的实现类）
+   *
+   * @param target 被拦截、被代理的目标对象
+   * @return 加上拦截器增强逻辑后的目标对象的代理对象
+   */
   default Object plugin(Object target) {
     return Plugin.wrap(target, this);
   }

@@ -370,6 +370,7 @@ public abstract class AbstractSQL<T> {
   }
 
   /*
+  TODO 应该是文档注释
    * used to add a new inserted row while do multi-row insert.
    *
    * @since 3.5.2
