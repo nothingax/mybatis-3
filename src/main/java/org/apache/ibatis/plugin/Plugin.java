@@ -15,6 +15,8 @@
  */
 package org.apache.ibatis.plugin;
 
+import org.apache.ibatis.reflection.ExceptionUtil;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -22,8 +24,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.ibatis.reflection.ExceptionUtil;
 
 /**
  * @author Clinton Begin
@@ -73,9 +73,7 @@ public class Plugin implements InvocationHandler {
 
       // 如果当前执行的这个method在拦截器注解的方法中，则执行interceptor拦截
       if (methods != null && methods.contains(method)) {
-
-        // 递归，当原目标方法执行时，会进入代理对象的invoke方法，执行intercept加强方法。然后调用invocation的proceed方法
-        // proceed 执行目标类的远方法。
+        // 代理对象执行query方法，进入代理对象invoke方法，执行拦截器逻辑，再执行当前代理对象的目标对象的invoke（），这是个递归，最终所有拦截器形成了链式调用
         return interceptor.intercept(new Invocation(target, method, args));
       }
       return method.invoke(target, args);
